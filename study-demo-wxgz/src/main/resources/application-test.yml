@@ -1,0 +1,95 @@
+
+spring:
+  profiles: test
+
+  ## redis链接
+  redis:
+    database: 0
+    ## 如果是单点的redis，打开以下配置 start
+    host: 47.96.106.28
+    port: 6379
+    ## 单点redis配置结束 end
+    password: shizg666
+    timeout: 500ms
+    ## 如果是sentinel，打开以下配置 start
+    #    sentinel:
+    #      master: mymaster
+    #      nodes: [10.0.0.7:26379,10.0.0.7:26380,10.0.0.7:26381]
+    ## sentinel配置结束
+    lettuce:
+      pool:
+        # 连接池中的最大空闲连接 默认8
+        max-idle: 8
+        # 连接池中的最小空闲连接 默认0
+        min-idle: 2
+        # 连接池最大连接数 默认8 ，负数表示没有限制
+        max-active: 50
+        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认-1
+        max-wait: 1000ms
+        # 空闲链接检测线程检测周期。如果为负值，表示不运行检测线程。
+        time-between-eviction-runs: 1000ms
+
+
+  ## mysql 自定义数据源
+my:
+  dynamic:
+    datasource:
+      enable: true
+      defaultDatasourceName: master
+      datasourceList:
+        - name: master
+          url: jdbc:mysql://47.96.106.28:3306/wx?useSSL=false&serverTimeZone=CTT
+          username: root
+          password: shizg666
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          maxActive: 50
+          initialSize: 5
+          validationQuery: select 'x'
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+          poolPreparedStatements: true
+          maxOpenPreparedStatements: 20
+          minEvictableIdleTimeMillis: 300000
+        #       maxWait: 60000
+        #       minIdle: 1
+        #       timeBetweenEvictionRunsMillis: 60000
+
+        #       spring.datasource.filters: stat
+#        - name: slave
+#          url: jdbc:mysql://47.103.49.45:3306/smart_home?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimeZone=CTT
+#          username: root
+#          password: aA123456
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          maxActive: 50
+#          initialSize: 5
+#          validationQuery: select 'x'
+#          testWhileIdle: true
+#          testOnBorrow: false
+#          testOnReturn: false
+#          poolPreparedStatements: true
+#          maxOpenPreparedStatements: 20
+#          minEvictableIdleTimeMillis: 300000
+
+
+  #配置slq打印日志
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+wx:
+  mp:
+    useRedis: false
+    redisConfig:
+      host: 47.96.106.28
+      port: 6379
+      password: shizg666
+    configs:
+      - appId: wxe108c133aa55f602 # 第一个公众号的appid
+        secret: 2578eae3b191761e979cd055368d1a47 # 公众号的appsecret
+        token: shizg666 # 接口配置里的Token值
+        aesKey: x1w1an9Pghfmy08Hh9HCksivQASBc3L1buEed91S5ka # 接口配置里的EncodingAESKey值
+#      - appId: 2222 # 第二个公众号的appid，以下同上
+#        secret: 1111
+#        token: 111
+#        aesKey: 111
