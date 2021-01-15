@@ -22,10 +22,10 @@ import java.util.List;
  * @Version V1.0
  **/
 @Component
-public class HearReptile implements PageProcessor {
+public class GuoNIanReptile implements PageProcessor {
     //regex of URL:http://www.xbiquge.la/
-    public static final String FIRST_URL2 = "http://www.diyijuzi.com/aiqing/44264.html";
-    public static final Integer FIRST = 1;
+    public static final String[] FIRST_URL2 = {"https://www.diyijuzi.com/zhufuyu/43566.html","https://www.diyijuzi.com/zhufuyu/43619.html","https://www.diyijuzi.com/zhufuyu/42533.html","https://www.diyijuzi.com/zhufuyu/44449.html","https://www.diyijuzi.com/zhufuyu/44447.html","https://www.diyijuzi.com/zhufuyu/44427.html"};
+    public static final Integer FIRST = 2;
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
 
@@ -107,7 +107,7 @@ public class HearReptile implements PageProcessor {
     }
 
     public  void start(){
-        Spider.create(new HearReptile()).addUrl(FIRST_URL2)
+        Spider.create(new GuoNIanReptile()).addUrl(FIRST_URL2)
                 //输出到控制台
                 .addPipeline(new ConsolePipeline())
                 //传输到数据库
@@ -119,7 +119,7 @@ public class HearReptile implements PageProcessor {
     }
 
     public static void main(String[] args){
-        Spider.create(new HearReptile()).addUrl(FIRST_URL2)
+        Spider.create(new GuoNIanReptile()).addUrl(FIRST_URL2)
                 //输出到控制台
 //                .addPipeline(new ConsolePipeline())
                 //传输到数据库

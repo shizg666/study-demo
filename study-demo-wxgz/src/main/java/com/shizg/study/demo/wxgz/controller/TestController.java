@@ -1,5 +1,7 @@
 package com.shizg.study.demo.wxgz.controller;
 
+import com.shizg.study.demo.wxgz.service.TPaMessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/aaa")
 public class TestController {
+
+    @Autowired
+    private TPaMessageService service;
 
     @GetMapping(value = "/test")
     public String test(){
