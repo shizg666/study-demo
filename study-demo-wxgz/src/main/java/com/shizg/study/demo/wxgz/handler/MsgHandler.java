@@ -7,7 +7,9 @@ import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import net.bytebuddy.asm.Advice;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -19,6 +21,9 @@ import static me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
  */
 @Component
 public class MsgHandler extends AbstractHandler {
+
+    @Autowired
+    private MessageHold messageHold;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -43,9 +48,15 @@ public class MsgHandler extends AbstractHandler {
         }
 
         //TODO 组装回复消息
-//        String content = "收到信息内容：" + JsonUtils.beanToJson(wxMessage);
+        String content = "收到信息内容：" + JsonUtils.beanToJson(wxMessage);
+        String message = content;
+        if ("1".equals(content)) {
+            message = messageHold.geAtMessageNex();
+        }else if ("2".equals(content)){
+            message = messageHold.geBtMessageNex();
+        }
 
-        return new TextBuilder().build(wxMessage.getContent(), wxMessage, weixinService);
+        return new TextBuilder().build(message, wxMessage, weixinService);
 
     }
 

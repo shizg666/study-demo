@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface TPaMessageService extends IService<TPaMessage> {
 
-    List<String> getList(Integer s,Long idNo);
+    List<String> getList(Integer s,int idNo);
 }

@@ -21,7 +21,7 @@ public class TPaMessageServiceImpl extends ServiceImpl<TPaMessageMapper, TPaMess
 
 
     @Override
-    public List<String> getList(Integer s,Long idNo) {
+    public List<String> getList(Integer s,int idNo) {
         return this.baseMapper.getList(s,idNo);
     }
 }

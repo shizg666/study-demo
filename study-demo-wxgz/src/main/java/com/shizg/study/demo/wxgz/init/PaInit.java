@@ -25,7 +25,7 @@ public class PaInit implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 //        hearReptile.start();
-        guoNIanReptile.start();
+//        guoNIanReptile.start();
     }
 
 
