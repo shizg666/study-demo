@@ -1,5 +1,6 @@
 package com.shizg.study.demo.wxgz.handler;
 
+import com.shizg.study.demo.wxgz.builder.ImageBuilder;
 import com.shizg.study.demo.wxgz.builder.TextBuilder;
 import com.shizg.study.demo.wxgz.utils.JsonUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -7,7 +8,6 @@ import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
-import net.bytebuddy.asm.Advice;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +24,7 @@ public class MsgHandler extends AbstractHandler {
 
     @Autowired
     private MessageHold messageHold;
+    public static final String s = "【我想“1”直对你说】：";
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -48,12 +49,14 @@ public class MsgHandler extends AbstractHandler {
         }
 
         //TODO 组装回复消息
-        String content = "收到信息内容：" + JsonUtils.beanToJson(wxMessage);
-        String message = content;
-        if ("1".equals(content)) {
-            message = messageHold.geAtMessageNex();
-        }else if ("2".equals(content)){
-            message = messageHold.geBtMessageNex();
+//        String content = "收到信息内容：" + JsonUtils.beanToJson(wxMessage);
+        String message = wxMessage.getContent();
+        if ("1".equals(message)) {
+            message = s.concat(messageHold.geAtMessageNex());
+        }else if ("2".equals(message)){
+            message = s.concat(messageHold.geBtMessageNex());
+        }else if ("5201314".equals(message)){
+            return new ImageBuilder().build(messageHold.getAaa(), wxMessage, weixinService);
         }
 
         return new TextBuilder().build(message, wxMessage, weixinService);

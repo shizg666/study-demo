@@ -18,6 +18,6 @@ import java.util.List;
 public interface TPaMessageMapper extends BaseMapper<TPaMessage> {
 
 
-    @Select("select t.text from t_pa_message t where t.type = #{type} and t.id > #{idNo} ORDER BY  t.id asc limit 50")
+    @Select("select t.text from t_pa_message t where t.type = #{type} and t.id > #{idNo} ORDER BY  t.id asc limit 30")
     List<String> getList(@Param("type") Integer type,@Param("idNo") int idNo);
 }

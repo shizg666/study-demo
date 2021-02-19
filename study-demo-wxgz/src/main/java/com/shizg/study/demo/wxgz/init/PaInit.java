@@ -1,5 +1,6 @@
 package com.shizg.study.demo.wxgz.init;
 
+import com.shizg.study.demo.wxgz.handler.MessageHold;
 import com.shizg.study.demo.wxgz.service.TPaMessageService;
 import com.shizg.study.demo.wxgz.webmagic.GuoNIanReptile;
 import com.shizg.study.demo.wxgz.webmagic.HearReptile;
@@ -20,10 +21,13 @@ public class PaInit implements CommandLineRunner {
 
     @Autowired
     private GuoNIanReptile guoNIanReptile;
+    @Autowired
+    private MessageHold messageHold;
 
 
     @Override
     public void run(String... args) throws Exception {
+        messageHold.init();
 //        hearReptile.start();
 //        guoNIanReptile.start();
     }
