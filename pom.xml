@@ -18,7 +18,7 @@
     <modules>
         <module>study-demo-wxgz</module>
         <module>sduty-demo-muit-datasource</module>
-        <module>design-deom</module>
+        <module>design-demo</module>
     </modules>
 
     <properties>
