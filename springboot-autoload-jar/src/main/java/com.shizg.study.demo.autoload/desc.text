@@ -1,0 +1,4 @@
+实现 springboot的自动装配：HelloServiceAutoConfiguration
+
+特定位置的特定文件：spring.factories
+

@@ -19,6 +19,7 @@
         <module>study-demo-wxgz</module>
         <module>sduty-demo-muit-datasource</module>
         <module>design-demo</module>
+        <module>springboot-autoload-jar</module>
     </modules>
 
     <properties>

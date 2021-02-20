@@ -9,11 +9,7 @@ import org.springframework.util.Assert;
 import javax.annotation.PostConstruct;
 import java.util.Map;
 
-/**
- * 使用策略模式去除if else 判断简化代码
- * 第一种 dataMap 注册 Map<String, PriceStrategy> priceStrategyMap SpringBoot中 使用@Autowired 将bean注入到List或Map等集合中 在策略类使用自定义注解配置相关信息 ps:OrdinaryStrategy
- * 第二种就是 策略实现类 实现 InitializingBean 接口 afterPropertiesSet() 方法中向工厂方法主动注册自己 这种工厂方法要提供注册方法 ps:SilverStrategy
- */
+
 @Component
 @Slf4j
 public class PriceStrategyFactory {

@@ -1,5 +1,6 @@
 package com.shizg.study.demo.wxgz.controller;
 
+import com.shizg.study.demo.autoload.HelloService;
 import com.shizg.study.demo.wxgz.service.TPaMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +20,12 @@ public class TestController {
 
     @Autowired
     private TPaMessageService service;
+    @Autowired
+    private HelloService helloService;
 
     @GetMapping(value = "/test")
     public String test(){
-        return "123";
+        return helloService.say();
     }
 
     @GetMapping(value = "/error")
